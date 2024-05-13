@@ -1,9 +1,17 @@
 package com.ahinardev.screenmatch;
 
+import com.ahinardev.screenmatch.model.DatosEpisodio;
+import com.ahinardev.screenmatch.model.DatosSerie;
+import com.ahinardev.screenmatch.model.DatosTemporada;
+import com.ahinardev.screenmatch.principal.Principal;
 import com.ahinardev.screenmatch.service.ConsumoAPI;
+import com.ahinardev.screenmatch.service.ConvierteDatos;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 public class ScreenmatchApplication implements CommandLineRunner {
@@ -14,9 +22,11 @@ public class ScreenmatchApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		//System.out.println("hola mundo");
-		var consumoAPI = new ConsumoAPI();
-		var json = consumoAPI.obtenerDatos("https://www.omdbapi.com/?t=game+of+thrones&apikey=1392bb39");
-		System.out.println(json);
+		Principal principal = new Principal();
+		principal.muestraElMenu();
+
+
+
+
 	}
 }
