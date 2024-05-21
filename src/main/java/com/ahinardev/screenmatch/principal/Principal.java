@@ -92,17 +92,27 @@ public class Principal {
 
         //busca episodio por pedazo de titulo
 
-        System.out.println("Por favor escriba el titulo del episodio que desea ver");
-        var pedazoTitulo = teclado.nextLine();
-        Optional<Episodio> episodioBuscado = episodios.stream()
-                .filter(e -> e.getTitulo().toUpperCase().contains(pedazoTitulo.toUpperCase()))
-                .findFirst();
-        if (episodioBuscado.isPresent()) {
-            System.out.println("episodio encontrado");
-            System.out.println(" los datos son: "+episodioBuscado.get());
-        }else {
-            System.out.println("No se encontro el episodio");
-        }
-
+//        System.out.println("Por favor escriba el titulo del episodio que desea ver");
+//        var pedazoTitulo = teclado.nextLine();
+//        Optional<Episodio> episodioBuscado = episodios.stream()
+//                .filter(e -> e.getTitulo().toUpperCase().contains(pedazoTitulo.toUpperCase()))
+//                .findFirst();
+//        if (episodioBuscado.isPresent()) {
+//            System.out.println("episodio encontrado");
+//            System.out.println(" los datos son: "+episodioBuscado.get());
+//        }else {
+//            System.out.println("No se encontro el episodio");
+//        }
+        Map<Integer, Double> evaluacionesPorTemporada= episodios.stream()
+                .filter(e->e.getEvaluacion()>0.0)
+                .collect(Collectors.groupingBy(Episodio::getTemporada,
+                Collectors.averagingDouble(Episodio::getEvaluacion)));
+        System.out.println(evaluacionesPorTemporada);
+        DoubleSummaryStatistics est = episodios.stream()
+                .filter(e->e.getEvaluacion()>0.0)
+                .collect(Collectors.summarizingDouble(Episodio::getEvaluacion));
+        System.out.println("La media de las evaluaciones es: " + est.getAverage());
+        System.out.println("Episodio mejor evaluado "+est.getMax());
+        System.out.println("Episodio peor evaluado "+est.getMin());
     }
 }
