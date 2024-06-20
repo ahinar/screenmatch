@@ -1,7 +1,5 @@
 package com.ahinardev.screenmatch.model;
 
-import com.ahinardev.screenmatch.service.ConsultachatGPT;
-import com.fasterxml.jackson.annotation.JsonAlias;
 
 
 import java.util.OptionalDouble;
@@ -12,8 +10,6 @@ public class Serie {
     private Double evaluacion;
     private Categoria genero;
     private String sinopsis;
-    private String actores;
-    private String poster;
 
     public Serie(DatosSerie datosSerie) {
         this.titulo = datosSerie.titulo();
@@ -23,18 +19,17 @@ public class Serie {
         this.genero = Categoria.fromString(datosSerie.genero().split(",")[0].trim());
         this.actores = datosSerie.actores();
         //this.sinopsis = ConsultachatGPT.obtenerTraduccion(datosSerie.sinopsis()) ;
-        this.sinopsis = datosSerie.sinopsis() ;
+        this.sinopsis = datosSerie.sinopsis();
     }
 
     @Override
     public String toString() {
-        return  "genero=" + genero +
+        return "genero=" + genero +
                 "titulo='" + titulo + '\'' +
                 ", totalTemporadas=" + totalTemporadas +
                 ", evaluacion=" + evaluacion +
                 ", poster='" + poster + '\'' +
                 ", actores='" + actores + '\'' +
-                ", sinopsis='" + sinopsis + '\'';
     }
 
     public String getTitulo() {
