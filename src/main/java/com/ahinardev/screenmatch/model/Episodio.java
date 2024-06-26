@@ -16,27 +16,33 @@ public class Episodio {
     private Double evaluacion;
     private LocalDate fechaDeLanzamiento;
     @ManyToOne
-    @JoinColumn(name = "serie_id")
     private Serie serie;
 
-    public Episodio() {}
+    public Episodio(){}
+
     public Episodio(Integer numero, DatosEpisodio d) {
         this.temporada = numero;
         this.titulo = d.titulo();
         this.numeroEpisodio = d.numeroEpisodio();
-        try {
+        try{
             this.evaluacion = Double.valueOf(d.evaluacion());
-        }catch(NumberFormatException e) {
+        }catch (NumberFormatException e){
             this.evaluacion = 0.0;
         }
-
-        try {
-            this. fechaDeLanzamiento = LocalDate.parse(d.fechaDeLAnzamiento()) ;
-        }catch(DateTimeParseException e) {
+        try{
+            this.fechaDeLanzamiento = LocalDate.parse(d.fechaDeLanzamiento());
+        } catch (DateTimeParseException e){
             this.fechaDeLanzamiento = null;
         }
 
+    }
 
+    public Serie getSerie() {
+        return serie;
+    }
+
+    public void setSerie(Serie serie) {
+        this.serie = serie;
     }
 
     public Integer getTemporada() {
@@ -79,21 +85,13 @@ public class Episodio {
         this.fechaDeLanzamiento = fechaDeLanzamiento;
     }
 
-    public Serie getSerie() {
-        return serie;
-    }
-
-    public void setSerie(Serie serie) {
-        this.serie = serie;
-    }
-
     @Override
     public String toString() {
         return
                 "temporada=" + temporada +
-                ", titulo='" + titulo + '\'' +
-                ", numeroEpisodio=" + numeroEpisodio +
-                ", evaluacion=" + evaluacion +
-                ", fechaDeLanzamiento=" + fechaDeLanzamiento ;
+                        ", titulo='" + titulo + '\'' +
+                        ", numeroEpisodio=" + numeroEpisodio +
+                        ", evaluacion=" + evaluacion +
+                        ", fechaDeLanzamiento=" + fechaDeLanzamiento;
     }
 }

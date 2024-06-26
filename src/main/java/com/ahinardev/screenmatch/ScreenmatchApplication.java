@@ -2,7 +2,7 @@ package com.ahinardev.screenmatch;
 
 import com.ahinardev.screenmatch.model.DatosEpisodio;
 import com.ahinardev.screenmatch.model.DatosSerie;
-import com.ahinardev.screenmatch.model.DatosTemporada;
+import com.ahinardev.screenmatch.model.DatosTemporadas;
 import com.ahinardev.screenmatch.principal.Principal;
 import com.ahinardev.screenmatch.repository.SerieRepository;
 import com.ahinardev.screenmatch.service.ConsumoAPI;
